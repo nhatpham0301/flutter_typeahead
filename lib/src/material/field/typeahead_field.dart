@@ -543,6 +543,9 @@ class TypeAheadField<T> extends StatefulWidget {
   // Adds a callback for the suggestion box opening or closing
   final void Function(bool)? onSuggestionsBoxToggle;
 
+
+  final String? hintText;
+
   /// Creates a [TypeAheadField]
   const TypeAheadField({
     required this.suggestionsCallback,
@@ -579,6 +582,7 @@ class TypeAheadField<T> extends StatefulWidget {
     this.onSuggestionsBoxToggle,
     this.hideKeyboardOnDrag = false,
     this.ignoreAccessibleNavigation = false,
+    this.hintText,
     super.key,
   })  : assert(animationStart >= 0.0 && animationStart <= 1.0),
         assert(
@@ -885,6 +889,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
       child: PointerInterceptor(
         intercepting: widget.intercepting,
         child: TextField(
+          hintText: widget.hintText,
           focusNode: this._effectiveFocusNode,
           controller: this._effectiveController,
           decoration: widget.textFieldConfiguration.decoration,
